@@ -215,7 +215,29 @@ function DatePickerCtrl($scope, $mdDialog, $mdMedia, $timeout, currentDate, opti
         if(newValue && newValue !== oldValue)
         this.updateDaysInMonth();
     })
+    var animElements = [
+        element[0].querySelector(".mdp-calendar-week-days"),
+        element[0].querySelector('.mdp-calendar-days'),
+        element[0].querySelector('.mdp-calendar-monthyear')
+    ].map(function(a) {
+       return angular.element(a); 
+    });
     
+    scope.$watch(function() { return  this.date.format("YYYYMM") }, function(newValue, oldValue) {
+        var direction = null;
+        
+        if(newValue > oldValue)
+            direction = "mdp-animate-next";
+        else if(newValue < oldValue)
+            direction = "mdp-animate-prev";
+        
+        if(direction) {
+            for(var i in animElements) {
+                animElements[i].addClass(direction);
+                $animate.removeClass(animElements[i], direction);
+            }
+        }
+    });
     this.updateDaysInMonth();
 }
 
@@ -317,29 +339,29 @@ module.directive("mdpCalendar", ["$animate", function($animate) {
         controller: ["$scope", CalendarCtrl],
         controllerAs: "calendar",
         link: function(scope, element, attrs, ctrl) {
-            var animElements = [
-                element[0].querySelector(".mdp-calendar-week-days"),
-                element[0].querySelector('.mdp-calendar-days'),
-                element[0].querySelector('.mdp-calendar-monthyear')
-            ].map(function(a) {
-               return angular.element(a); 
-            });
+            // var animElements = [
+            //     element[0].querySelector(".mdp-calendar-week-days"),
+            //     element[0].querySelector('.mdp-calendar-days'),
+            //     element[0].querySelector('.mdp-calendar-monthyear')
+            // ].map(function(a) {
+            //    return angular.element(a); 
+            // });
                 
-            scope.$watch(function() { return  ctrl.date.format("YYYYMM") }, function(newValue, oldValue) {
-                var direction = null;
+            // scope.$watch(function() { return  ctrl.date.format("YYYYMM") }, function(newValue, oldValue) {
+            //     var direction = null;
                 
-                if(newValue > oldValue)
-                    direction = "mdp-animate-next";
-                else if(newValue < oldValue)
-                    direction = "mdp-animate-prev";
+            //     if(newValue > oldValue)
+            //         direction = "mdp-animate-next";
+            //     else if(newValue < oldValue)
+            //         direction = "mdp-animate-prev";
                 
-                if(direction) {
-                    for(var i in animElements) {
-                        animElements[i].addClass(direction);
-                        $animate.removeClass(animElements[i], direction);
-                    }
-                }
-            });
+            //     if(direction) {
+            //         for(var i in animElements) {
+            //             animElements[i].addClass(direction);
+            //             $animate.removeClass(animElements[i], direction);
+            //         }
+            //     }
+            // });
         }
     }
 }]);
