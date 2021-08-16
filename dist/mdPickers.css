@@ -232,6 +232,11 @@ mdp-date-picker .md-button.md-icon-button {
 .mdp-datepicker.portrait {
   max-width: 234px;
 }
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+}
 .mdp-datepicker.portrait .mdp-calendar {
   text-align: center;
   width: 100%;
