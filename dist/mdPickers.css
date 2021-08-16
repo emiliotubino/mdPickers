@@ -189,6 +189,7 @@
 .mdp-datepicker-select-year .md-virtual-repeat-scroller {
   height: 100%;
   width: 100%;
+  overflow: auto;
 }
 mdp-date-picker > md-input-container.md-has-icon {
   padding-left: 40px;
