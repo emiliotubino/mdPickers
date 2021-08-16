@@ -120,7 +120,7 @@ function DatePickerCtrl($scope, $mdDialog, $mdMedia, $timeout, currentDate, opti
     };
     
     this.showYear = function() { 
-        this.yearTopIndex = (this.date.year() - this.yearItems.START) + Math.floor(this.yearItems.PAGE_SIZE / 2);
+        this.yearTopIndex = (moment().year() - this.yearItems.START) + Math.floor(this.yearItems.PAGE_SIZE / 2);
         this.yearItems.currentIndex_ = (this.date.year() - this.yearItems.START) + 1;
         this.selectingYear = true;
     };
@@ -180,7 +180,7 @@ function DatePickerCtrl($scope, $mdDialog, $mdMedia, $timeout, currentDate, opti
             if(i > firstDay) {
                 day =  {
                     value: (i - firstDay),
-                    enabled: self.isDayEnabled(moment(self.date).date(i - firstDay).toDate())
+                    enabled: this.isDayEnabled(moment(this.date).date(i - firstDay).toDate())
                 };
             }
             arr.push(day);
@@ -208,7 +208,7 @@ function DatePickerCtrl($scope, $mdDialog, $mdMedia, $timeout, currentDate, opti
     };
     
     this.updateDaysInMonth = function() {
-        this.daysInMonth = self.getDaysInMonth();
+        this.daysInMonth = this.getDaysInMonth();
     };
     
     $scope.$watch(function() { return  this.date.unix() }, function(newValue, oldValue) {
