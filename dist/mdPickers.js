@@ -116,7 +116,7 @@ function DatePickerCtrl($scope, $mdDialog, $mdMedia, $timeout, currentDate, opti
         this.date.year(year);
         $scope.year = year;
         this.selectingYear = false;
-        this.animate();
+        this.showCalendar();
     };
     
     this.showYear = function() { 
@@ -301,7 +301,7 @@ module.directive("mdpCalendar", ["$animate", function($animate) {
         template: '<div class="mdp-calendar">' +
                     '<div layout="row" layout-align="space-between center">' +
                         '<md-button aria-label="previous month" class="md-icon-button" ng-click="datepicker.prevMonth()"><md-icon md-svg-icon="mdp-chevron-left"></md-icon></md-button>' +
-                        '<div class="mdp-calendar-monthyear" ng-show="!datepicker.animating">{{ datepicker.date.format("MMMM YYYY") }}</div>' +
+                        '<div class="mdp-calendar-monthyear">{{ datepicker.date.format("MMMM YYYY") }}</div>' +
                         '<md-button aria-label="next month" class="md-icon-button" ng-click="datepicker.nextMonth()"><md-icon md-svg-icon="mdp-chevron-right"></md-icon></md-button>' +
                     '</div>' +
                     '<div layout="row" layout-align="space-around center" class="mdp-calendar-week-days" ng-show="!datepicker.animating">' +
