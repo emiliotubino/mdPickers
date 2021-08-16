@@ -102,12 +102,8 @@ function DatePickerCtrl($scope, $mdDialog, $mdMedia, $timeout, currentDate, opti
         	return this.START + index;
         },
         getLength: function() {
-            // return Math.min(
-            //     this.currentIndex_ + Math.floor(this.PAGE_SIZE / 2),
-            //     Math.abs(this.START - this.END) + 1
-            // );
             return Math.min(
-                this.currentIndex_ + Math.floor(this.PAGE_SIZE / 2)+5,
+                this.currentIndex_ + Math.floor(this.PAGE_SIZE / 2),
                 Math.abs(this.START - this.END) + 1
             );
         }
@@ -124,8 +120,8 @@ function DatePickerCtrl($scope, $mdDialog, $mdMedia, $timeout, currentDate, opti
     };
     
     this.showYear = function() { 
-        this.yearTopIndex = (self.date.year() - self.yearItems.START) + Math.floor(self.yearItems.PAGE_SIZE / 2);
-        this.yearItems.currentIndex_ = (self.date.year() - self.yearItems.START) + 1;
+        this.yearTopIndex = (this.date.year() - this.yearItems.START) + Math.floor(this.yearItems.PAGE_SIZE / 2);
+        this.yearItems.currentIndex_ = (this.date.year() - this.yearItems.START) + 1;
         this.selectingYear = true;
     };
     
