@@ -87,6 +87,21 @@
   font-size: 0.75rem;
   opacity: 0.6;
 }
+md-input-container {
+  padding: 0px !important;
+  margin: 0px !important;
+}
+md-input-container input {
+  border-bottom: none !important;
+  font-size: 16px !important;
+  color: #555 !important;
+}
+md-input-container label {
+    display: none;
+}
+.md-errors-spacer {
+  display: none;
+}
 .mdp-calendar-week-days > * {
   width: 32px;
   height: 32px;
@@ -225,12 +240,15 @@ mdp-date-picker .md-button.md-icon-button {
   overflow: hidden;
   padding: 0px;
 }
+.md-dialog-container {
+  top: 0px !important;
+}
 .mdp-datepicker md-dialog-content .mdp-calendar {
   width: 294px;
   overflow-x: hidden;
 }
 .mdp-datepicker.portrait {
-  max-width: 234px;
+  width: 300px;
 }
 input[type="date"]::-webkit-inner-spin-button,
 input[type="date"]::-webkit-calendar-picker-indicator {
@@ -250,14 +268,14 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .mdp-datepicker.portrait .mdp-calendar-week-days,
 .mdp-datepicker.portrait .mdp-calendar-days,
 .mdp-datepicker.portrait .md-actions {
-  padding: 0 5px;
+  padding: 0px;
 }
 .mdp-datepicker.portrait .md-actions {
   margin-top: 20px;
 }
 .mdp-datepicker.portrait .mdp-calendar-week-days > *,
 .mdp-datepicker.portrait .mdp-calendar-days > * {
-  width: 32px;
+  width: 42px;
 }
 mdp-calendar {
   display: block;

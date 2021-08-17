@@ -213,10 +213,10 @@
             this.daysInMonth = this.getDaysInMonth();
         };
         
-        $scope.$watch(function() { return  this.date.unix() }, function(newValue, oldValue) {
-            if(newValue && newValue !== oldValue)
-            this.updateDaysInMonth();
-        })
+        // $scope.$watch(function() { return  this.date.unix() }, function(newValue, oldValue) {
+        //     if(newValue && newValue !== oldValue)
+        //     this.updateDaysInMonth();
+        // })
         
         this.updateDaysInMonth();
     }
@@ -351,7 +351,7 @@
     }
     
     function minDateValidator(value, format, minDate) {
-        var minDate = moment(minDate, "YYYY-MM-DD", true);
+        var minDate = moment(minDate, "MMM DD, YYYY", true);
         var date = angular.isDate(value) ? moment(value) :  moment(value, format, true);
         
         return !value || 
@@ -361,7 +361,7 @@
     }
     
     function maxDateValidator(value, format, maxDate) {
-        var maxDate = moment(maxDate, "YYYY-MM-DD", true);
+        var maxDate = moment(maxDate, "MMM DD, YYYY", true);
         var date = angular.isDate(value) ? moment(value) :  moment(value, format, true);
         
         return !value || 
@@ -392,7 +392,10 @@
                 var noFloat = angular.isDefined(attrs.mdpNoFloat),
                     placeholder = angular.isDefined(attrs.mdpPlaceholder) ? attrs.mdpPlaceholder : "",
                     openOnClick = angular.isDefined(attrs.mdpOpenOnClick) ? true : false;
-                return '<div></div><input class="form-control" type="{{ ::type }}"' + (angular.isDefined(attrs.mdpDisabled) ? ' ng-disabled="disabled"' : '') + ' aria-label="' + placeholder + '" placeholder="' + placeholder + '"' + (openOnClick ? ' ng-click="showPicker($event)" ' : '') + ' />';
+                return '<div></div><md-input-container class="form-control">' +
+                            '<input ' + (angular.isDefined(attrs.mdpDisabled) ? ' ng-disabled="disabled"' : '') + ' aria-label="' + placeholder + '" placeholder="' + placeholder + '"' + (openOnClick ? ' ng-click="showPicker($event)" ' : '') + ' />' +
+                        '</md-input-container>'
+                // return '<div></div><input class="form-control" type="{{ ::type }}"' + (angular.isDefined(attrs.mdpDisabled) ? ' ng-disabled="disabled"' : '') + ' aria-label="' + placeholder + '" placeholder="' + placeholder + '"' + (openOnClick ? ' ng-click="showPicker($event)" ' : '') + ' />';
             },
             scope: {
                 "minDate": "=mdpMinDate",
@@ -420,7 +423,7 @@
                     // var messages = angular.element(inputElement[0].querySelector("[ng-messages]"));
                     
                     scope.type = scope.dateFormat ? "text" : "date"
-                    scope.dateFormat = scope.dateFormat || "YYYY-MM-DD";
+                    scope.dateFormat = scope.dateFormat || "MMM DD, YYYY";
                     scope.model = ngModel;
                     
                     scope.isError = function() {
@@ -490,9 +493,9 @@
                             ngModel.$setViewValue(date);
                         }
                         
-                        if(!ngModel.$pristine && 
-                            messages.hasClass("md-auto-hide") && 
-                            inputContainer.hasClass("md-input-invalid")) messages.removeClass("md-auto-hide");
+                        // if(!ngModel.$pristine && 
+                        //     messages.hasClass("md-auto-hide") && 
+                        //     inputContainer.hasClass("md-input-invalid")) messages.removeClass("md-auto-hide");
         
                         ngModel.$render();
                     }
@@ -533,7 +536,7 @@
                 "dateFormat": "@mdpFormat",
             },
             link: function(scope, element, attrs, ngModel, $transclude) {
-                scope.dateFormat = scope.dateFormat || "YYYY-MM-DD";
+                scope.dateFormat = scope.dateFormat || "MMM DD, YYYY";
                 
                 ngModel.$validators.format = function(modelValue, viewValue) {
                     return formatValidator(viewValue, scope.format);
@@ -908,9 +911,9 @@
                         ngModel.$setViewValue(time);
                     }
                     
-                    if(!ngModel.$pristine && 
-                        messages.hasClass("md-auto-hide") && 
-                        inputContainer.hasClass("md-input-invalid")) messages.removeClass("md-auto-hide");
+                    // if(!ngModel.$pristine && 
+                    //     messages.hasClass("md-auto-hide") && 
+                    //     inputContainer.hasClass("md-input-invalid")) messages.removeClass("md-auto-hide");
                     
                     ngModel.$render();
                 }
