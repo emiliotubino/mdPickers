@@ -197,6 +197,18 @@
         
         this.selectDate = function(dom) {
             this.date.date(dom);
+
+            var date = this.date;
+            
+            if (this.minDate && this.date.isBefore(this.minDate)) {
+                date = moment(this.minDate);
+            }
+            
+            if (this.maxDate && this.date.isAfter(this.maxDate)) {
+                date = moment(this.maxDate);
+            }  	
+            
+            $mdDialog.hide(date.toDate());
         };
     
         this.nextMonth = function() {
@@ -269,7 +281,6 @@
                                         '<md-dialog-actions layout="row">' +
                                             '<span flex></span>' +
                                             '<md-button ng-click="datepicker.cancel()" aria-label="' + LABEL_CANCEL + '">' + LABEL_CANCEL + '</md-button>' +
-                                            '<md-button ng-click="datepicker.confirm()" class="md-primary" aria-label="' + LABEL_OK + '">' + LABEL_OK + '</md-button>' +
                                         '</md-dialog-actions>' +
                                     '</div>' +
                                 '</md-dialog-content>' +
@@ -798,7 +809,6 @@
                                         '<md-dialog-actions layout="row">' +
                                             '<span flex></span>' +
                                             '<md-button ng-click="timepicker.cancel()" aria-label="' + LABEL_CANCEL + '">' + LABEL_CANCEL + '</md-button>' +
-                                            '<md-button ng-click="timepicker.confirm()" class="md-primary" aria-label="' + LABEL_OK + '">' + LABEL_OK + '</md-button>' +
                                         '</md-dialog-actions>' +
                                     '</div>' +
                                 '</md-dialog-content>' +
